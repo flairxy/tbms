@@ -10,15 +10,19 @@ use App\Http\Controllers\Controller;
 class AdminSettingsController extends Controller
 {
     public function index() {
+        $this->authorize('isSA');
         $settings = Setting::all();
         return response($settings);
     }
 
     public function create(Request $request) {
+
         $this->validate($request, [
             'value' => 'required|max:255',
             'name'=> 'required'
         ]);
+        $this->authorize('isSuperAdmin');
+
         $ref = Setting::whereName($request->name)->first();
         if(!$ref) {
             $setting = new Setting();
@@ -38,6 +42,8 @@ class AdminSettingsController extends Controller
     }
 
     public function delete($id) {
+        $this->authorize('isSuperAdmin');
+
         $setting = Setting::find($id);
         $setting->delete();
         return response([

@@ -13,6 +13,7 @@ class AdminPermissionController extends Controller
             'name' => 'min:2|max:255'
         ])->validate();
 
+
         Permission::create([
             'slug' => $request->slug,
             'description' => $request->slug . 'permission',

@@ -27,6 +27,7 @@ class AdminRoleController extends Controller
 
     public function updateRole(Request $request)
     {
+        $this->authorize('isSuperAdmin');
         $slugs = $request->permissions;
         $role = Role::findOrFail($request->role);
         $permissions = Permission::whereIn('slug', $slugs)->get();
@@ -37,6 +38,7 @@ class AdminRoleController extends Controller
     public function createRole(Request $request)
     {
 
+        $this->authorize('isSuperAdmin');
         foreach ($request->permissions as $permission) {
             $word = explode('-', $permission);
             Permission::firstOrCreate([
@@ -57,6 +59,8 @@ class AdminRoleController extends Controller
 
     public function renameRole(Request $request, $id)
     {
+        $this->authorize('isSuperAdmin');
+
         $role = Role::find($id);
         $role->slug = $request->slug;
         $role->description = $request->slug . ' role';

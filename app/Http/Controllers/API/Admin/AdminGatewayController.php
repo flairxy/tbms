@@ -14,6 +14,8 @@ class AdminGatewayController extends Controller
             'charge' => 'required|max:255',
         ]);
 
+        $this->authorize('isSuperAdmin');
+
         $gateway = new Gateway();
         $gateway->fill($request->all());
         $gateway->save();
@@ -26,6 +28,8 @@ class AdminGatewayController extends Controller
             'charge' => 'required|max:255',
         ]);
 
+        $this->authorize('isSuperAdmin');
+
         $gateway = Gateway::findOrFail($id);
         $gateway->fill($request->all());
         $gateway->save();
@@ -33,6 +37,8 @@ class AdminGatewayController extends Controller
     }
 
     public function delete($id) {
+        $this->authorize('isSuperAdmin');
+
         $gateway = Gateway::find($id);
         $gateway->delete();
         return response([

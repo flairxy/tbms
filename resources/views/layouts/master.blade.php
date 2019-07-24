@@ -20,11 +20,11 @@
     <!-- Styles -->
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/bky.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">

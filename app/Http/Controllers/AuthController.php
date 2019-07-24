@@ -34,7 +34,6 @@ class AuthController extends Controller
 
         $this->validator($request->all())->validate();
         $data = $request->all();
-        dd($data);
         $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],

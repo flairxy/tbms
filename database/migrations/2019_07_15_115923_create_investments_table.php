@@ -18,16 +18,18 @@ class CreateInvestmentsTable extends Migration
             $table->string('reference_id');
             $table->unsignedBigInteger('user_id');
             $table->string('plan');
+            $table->unsignedBigInteger('plan_id');
             $table->string('gateway');
             $table->decimal('charge');
             $table->decimal('amount');
             $table->boolean('status')->default(0);
             $table->dateTime('start');
-            $table->dateTime('end')->nullable();
+            $table->dateTime('last_profit');
+            $table->dateTime('end');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-//            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
         });
     }
 

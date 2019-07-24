@@ -22,7 +22,8 @@
                         <td class="font-w600">{{setting.value}}</td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" @click="settingDelete(setting.id, setting)" class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                <button type="button" @click="settingDelete(setting.id, setting)"
+                                        class="btn btn-sm btn-secondary js-tooltip-enabled">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </div>
@@ -112,7 +113,7 @@
 
                     // Send request to the server
                     if (result.value) {
-                        UsersRepository.deleteSetting(id).then(response=>{
+                        UsersRepository.deleteSetting(id).then(response => {
                             const settingIndex = this.settings.findIndex(p => p.id === setting.id);
                             this.settings.splice(settingIndex, 1);
                             swal.fire(
@@ -120,8 +121,14 @@
                                 response.data.message,
                                 response.data.status
                             );
-                        }).catch(()=> {
-                            swal("Failed!", "There was something wrong.", "warning");
+                        }).catch(error => {
+                            if (error.response.status == 403) {
+                                toast.fire({
+                                    type: 'error',
+                                    title: 'Action Unauthorized'
+                                });
+                            } else
+                                swal("Failed!", "There was something wrong.", "warning");
                         });
                     }
                 })
@@ -142,11 +149,17 @@
                     this.$Progress.finish();
                     Fire.$emit('Refresh');
 
-                }).catch(err => {
-                    toast.fire({
-                        type: 'warning',
-                        title: 'Failed to create setting'
-                    });
+                }).catch(error => {
+                    if (error.response.status == 403) {
+                        toast.fire({
+                            type: 'error',
+                            title: 'Action Unauthorized'
+                        });
+                    } else
+                        toast.fire({
+                            type: 'warning',
+                            title: 'Failed to create setting'
+                        });
                 })
             },
             loadSettings() {

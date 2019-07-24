@@ -6,13 +6,13 @@
         </nav>
         <div class="block-content block-content-full">
 
-            <button type="button" class="btn btn-outline-info mr-5 mb-5" @click.prevent="depositModal">
+            <button type="button" class="btn btn-outline-success mr-5 mb-5" @click.prevent="depositModal">
                 <i class="fa fa-download mr-5"></i> Receive
             </button>
             <button type="button" class="btn btn-outline-danger mr-5 mb-5" @click.prevent="withdrawModal">
                 <i class="fa fa-send-o mr-5"></i> Send
             </button>
-            <button type="button" class="btn btn-success mr-5 mb-5" @click.prevent="exchangeModal">
+            <button type="button" class="btn bg-gd-primary text-white mr-5 mb-5" @click.prevent="exchangeModal">
                 <i class="fa fa-exchange mr-5"></i> Exchange
             </button>
         </div>
@@ -28,7 +28,7 @@
                 <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-right mt-15 d-none d-sm-block">
-                            <i class="si si-wallet fa-2x text-earth-light"></i>
+                            <i class="si si-wallet fa-2x text-earth"></i>
                         </div>
                         <div class="font-size-h3 font-w600 text-earth">
                             <span data-toggle="countTo" data-speed="1000"
@@ -42,7 +42,7 @@
                 <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-right mt-15 d-none d-sm-block">
-                            <i class="si si-wallet fa-2x text-earth-light"></i>
+                            <i class="si si-wallet fa-2x text-earth"></i>
                         </div>
                         <div class="font-size-h3 font-w600 text-earth">
                             <span data-toggle="countTo" data-speed="1000"
@@ -56,7 +56,7 @@
                 <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-right mt-15 d-none d-sm-block">
-                            <i class="si si-wallet fa-2x text-earth-light"></i>
+                            <i class="si si-wallet fa-2x text-earth"></i>
                         </div>
                         <div class="font-size-h3 font-w600 text-earth">
                             <span data-toggle="countTo" data-speed="1000"
@@ -73,7 +73,7 @@
             <div class="modal-dialog modal-dialog-popin" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
+                        <div class="block-header bg-flat-darker">
                             <h3 v-if="!withdraw" class="block-title">Deposit Funds</h3>
                             <h3 v-else class="block-title">Withdraw Funds</h3>
                             <div class="block-options">
@@ -111,7 +111,7 @@
                                                 <i class="fa fa-2x fa-cog fa-spin text-success"></i>
                                             </div>
                                             <button type="submit" v-else
-                                                    class="btn btn-outline-success min-width-125 mb-10">
+                                                    class="btn btn-outline-success mb-10">
                                                 Deposit
                                             </button>
                                         </div>
@@ -122,27 +122,27 @@
                         <div v-else class="block-content">
                             <form @submit.prevent="withdrawFund(user.id)">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="form-material">
-                                            <select class="form-control"
-                                                    v-model="form.gateway" id="type" name="old_password">
-                                                <option value="" selected disabled>Choose Wallet</option>
-                                                <option v-for="gateway in gateways" :value="gateway.id">
-                                                    {{gateway.name}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="form-material">-->
+<!--                                            <select class="form-control"-->
+<!--                                                    v-model="form.gateway" id="type" name="old_password">-->
+<!--                                                <option value="" selected disabled>Choose Wallet</option>-->
+<!--                                                <option v-for="gateway in gateways" :value="gateway.id">-->
+<!--                                                    {{gateway.name}}-->
+<!--                                                </option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="form-group">
                                         <div class="form-material">
                                             <input type="number" class="form-control" v-model="form.amount">
-                                            <label>Amount</label>
+                                            <label>Amount (dollars)</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-material">
                                             <input type="text" class="form-control" v-model="form.address">
-                                            <label>Address</label>
+                                            <label>BKY Address</label>
                                         </div>
                                     </div>
 
@@ -151,7 +151,7 @@
                                             <i class="fa fa-2x fa-cog fa-spin text-danger"></i>
                                         </div>
                                         <button type="submit" v-else
-                                                class="btn btn-outline-danger min-width-125 mb-10">
+                                                class="btn btn-outline-danger mb-10">
                                             withdraw
                                         </button>
                                     </div>
@@ -168,7 +168,7 @@
             <div class="modal-dialog modal-dialog-popin" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
+                        <div class="block-header bg-flat-darker">
                             <h3 class="block-title">Exchange Funds</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-dismiss="modal"
@@ -215,18 +215,17 @@
                                     <div class="form-group">
                                         <div class="form-material">
                                             <label for="amount">Estimated BKY value</label>
-                                            <input type="number" DISABLED
-                                                   :value="form.amount / rate"/> BKY
+                                            <span class="text-primary"> {{form.amount / rate}} BKY</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="form-material">
                                             <div v-if="processing" class="col-6 col-md-3">
-                                                <i class="fa fa-2x fa-cog fa-spin text-success"></i>
+                                                <i class="fa fa-2x fa-cog fa-spin text-primary"></i>
                                             </div>
                                             <button type="submit" v-else
-                                                    class="btn btn-outline-success min-width-125 mb-10">
+                                                    class="btn btn-outline-primary mb-10">
                                                 Exchange
                                             </button>
                                         </div>
@@ -299,7 +298,7 @@
                 let data = {
                     user: id,
                     amount: this.form.amount,
-                    gateway: this.form.gateway,
+                    // gateway: this.form.gateway,
                     address: this.form.address
                 };
                 UsersRepository.userWithdrawal(data).then(response => {

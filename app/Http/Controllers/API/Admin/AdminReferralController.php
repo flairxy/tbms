@@ -14,6 +14,9 @@ class AdminReferralController extends Controller
         $this->validate($request, [
             'amount' => 'required|min:2|max:255',
         ]);
+
+        $this->authorize('isSuperAdmin');
+
         $ref = Setting::whereName('REFERRALS')->first();
         if(!$ref) {
             $setting = new Setting();
@@ -32,6 +35,8 @@ class AdminReferralController extends Controller
             'amount' => 'required|min:2|max:255',
         ]);
 
+        $this->authorize('isSuperAdmin');
+
         $setting = Setting::findOrFail($id);
         $setting->value = $request->amount;
         $setting->save();
@@ -39,6 +44,8 @@ class AdminReferralController extends Controller
     }
 
     public function delete($id) {
+        $this->authorize('isSuperAdmin');
+
         $referral = Setting::find($id);
         $referral->delete();
         return response([
@@ -48,6 +55,7 @@ class AdminReferralController extends Controller
     }
 
     public function edit($id) {
+        $this->authorize('isSuperAdmin');
         $referral = Setting::findOrFail($id);
         return response($referral);
     }

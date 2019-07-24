@@ -135,7 +135,7 @@ class UserDepositController extends Controller
         $currency2 = $_POST['currency2'];
         $status = (int)$_POST['status'];
         $status_text = $_POST['status_text'];
-        $deposit = Deposit::whereTransaction_id($item_number)->first();
+        $deposit = Deposit::whereTransactionId($item_number)->first();
         $user = $deposit->user_id;
         $gateway = $deposit->gateway;
         $order_currency = $deposit->currency1;
@@ -164,7 +164,7 @@ class UserDepositController extends Controller
                     'status' => 1,
                     'details' => 'Crypto Instant Deposit',
                 ]);
-                $account = Account::whereUser_id($user)->first();
+                $account = Account::whereUserId($user)->first();
                 if ($gateway->name === 'BITCOIN') {
                     $account->btc += $amount1;
                 }
@@ -184,6 +184,8 @@ class UserDepositController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('isSuperAdmin');
+
         $deposit = Deposit::findOrFail($id);
         $deposit->delete();
         return response('Deposit deleted successfully');

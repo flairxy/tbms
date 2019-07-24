@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         $schedule->command('user:transact')->everyMinute();
         $schedule->command('coinRate:update')->everyMinute();
+        $schedule->command('user:investment')->everyMinute();
 //        * * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
 
     }

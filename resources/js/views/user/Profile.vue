@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-8 col-xl-3">
+            <div class="col-md-8 col-xl-5">
                 <a class="block block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full clearfix">
                         <div class="text-right float-right mt-10">
@@ -33,11 +33,11 @@
                                 <a class="nav-link" id="security-tab" data-toggle="tab"
                                    href="#security" role="tab" aria-controls="security" aria-selected="false">Security</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="wallet-tab" data-toggle="tab" href="#wallet"
-                                   role="tab"
-                                   aria-controls="wallet" aria-selected="false">Wallet</a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" id="wallet-tab" data-toggle="tab" href="#wallet"-->
+<!--                                   role="tab"-->
+<!--                                   aria-controls="wallet" aria-selected="false">Wallet</a>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                     <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
                         <security-component/>
                     </div>
-                    <div class="tab-pane fade" id="wallet" role="tabpanel" aria-labelledby="wallet-tab">
-                        <wallet-component/>
-                    </div>
+<!--                    <div class="tab-pane fade" id="wallet" role="tabpanel" aria-labelledby="wallet-tab">-->
+<!--                        <wallet-component/>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>

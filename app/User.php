@@ -2,14 +2,15 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
-
-class User extends Authenticatable
+use App\Notifications\VerifyEmailQueued;
+class User extends Authenticatable  implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'reflink'
+        'username', 'email', 'password', 'reflink', 'role'
     ];
 
     /**
@@ -44,5 +45,19 @@ class User extends Authenticatable
 
     public function roles() {
         return $this->belongsToMany(Role::class,'user_roles');
+    }
+
+    public function hasRole( ... $roles ) {
+        foreach ($roles as $role) {
+            if ($this->roles->contains('slug', $role)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailQueued);
     }
 }

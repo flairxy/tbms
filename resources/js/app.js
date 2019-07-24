@@ -19,7 +19,6 @@ import VueProgressBar from 'vue-progressbar'
 import swal from 'sweetalert2'
 
 
-
 window.swal = swal;
 const toast = swal.mixin({
     toast: true,
@@ -29,6 +28,7 @@ const toast = swal.mixin({
 });
 window.toast = toast;
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VueClipboard);
 Vue.use(Vuex);
 Vue.use(VueProgressBar, {

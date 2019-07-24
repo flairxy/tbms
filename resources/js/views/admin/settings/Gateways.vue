@@ -127,7 +127,13 @@
                                 response.data.message,
                                 response.data.status
                             );
-                        }).catch(()=> {
+                        }).catch(error=> {
+                            if(error.response.status == 403) {
+                                toast.fire({
+                                    type: 'error',
+                                    title: 'Action Unauthorized'
+                                });
+                            }else
                             swal("Failed!", "There was something wrong.", "warning");
                         });
                     }
@@ -146,7 +152,13 @@
                         type: 'success',
                         title: 'Gateway updated successfully'
                     });
-                }).catch(() => {
+                }).catch(error => {
+                    if(error.response.status == 403) {
+                        toast.fire({
+                            type: 'error',
+                            title: 'Action Unauthorized'
+                        });
+                    }else
                     toast.fire({
                         type: 'warning',
                         title: 'Failed to Update gateway'
@@ -170,6 +182,12 @@
                     Fire.$emit('Refresh');
 
                 }).catch(err => {
+                    if(err.response.status == 403) {
+                        toast.fire({
+                            type: 'error',
+                            title: 'Action Unauthorized'
+                        });
+                    }
                     toast.fire({
                         type: 'warning',
                         title: 'Failed to create gateway'

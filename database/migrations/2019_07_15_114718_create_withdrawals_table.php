@@ -19,6 +19,7 @@ class CreateWithdrawalsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('gateway');
             $table->string('address');
+            $table->string('hash')->nullable();
             $table->decimal('charge');
             $table->decimal('net_amount');
             $table->boolean('status')->default(0);

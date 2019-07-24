@@ -6,33 +6,38 @@
         </nav>
         <div class="block">
             <div class="block-content">
-                <table class="js-table-sections table table-hover js-table-sections-enabled">
-                    <thead>
-                    <tr>
-                        <th style="width: 20px;"></th>
-                        <th>Amount</th>
-                        <th>Address</th>
-                        <th>Gateway</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                    <tbody class="js-table-sections-header">
-                    <tr v-for="(withdrawal, index) in withdrawals" :key="withdrawal.id">
-                        <td class="text-center">{{index + 1}}</td>
-                        <td class="font-size-sm text-danger">- ${{withdrawal.net_amount}}</td>
-                        <td class="font-size-sm">{{withdrawal.address}}</td>
-                        <td class="font-size-sm">{{withdrawal.gateway}}</td>
-                        <td class="font-size-sm">
-                            <span v-if="withdrawal.status == '0'" class="text-warning"><b>Pending</b></span>
-                            <span v-else class="text-success"><b>Paid</b></span>
-                        </td>
-                        <td class="">
-                            <span class="font-size-sm text-muted">{{withdrawal.created_at}}</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="js-table-sections table table-hover js-table-sections-enabled">
+                        <thead>
+                        <tr>
+                            <th style="width: 20px;"></th>
+                            <th>Amount</th>
+                            <th>Address</th>
+                            <th>Gateway</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-table-sections-header">
+                        <tr v-for="(withdrawal, index) in withdrawals" :key="withdrawal.id">
+                            <td class="text-center">{{index + 1}}</td>
+                            <td class="font-size-sm text-danger">- ${{withdrawal.net_amount}}</td>
+                            <td class="font-size-sm">{{withdrawal.address}}</td>
+                            <td class="font-size-sm">{{withdrawal.gateway}}</td>
+                            <td class="font-size-sm">
+                                <span v-if="withdrawal.status == '0'" class="text-warning"><b>Pending</b></span>
+                                <span v-else class="text-success"><b>Paid</b></span>
+                            </td>
+                            <td class="">
+                                <span class="font-size-sm text-muted">{{withdrawal.created_at}}</span>
+                            </td>
+                            <td class="" v-if="withdrawal.status == '1'">
+                                <span class="font-size-sm text-muted"><a :href="withdrawal.hash" target="_blank">View Transaction</a></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -40,6 +45,7 @@
 
 <script>
     import {RepositoryFactory} from '../../../repository/RepositoryFactory'
+
     const UsersRepository = RepositoryFactory.get('users');
     export default {
         data() {

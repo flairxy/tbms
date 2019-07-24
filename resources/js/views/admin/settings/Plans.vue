@@ -161,7 +161,13 @@
                                 response.data.message,
                                 response.data.status
                             );
-                        }).catch(()=> {
+                        }).catch(error=> {
+                            if(error.response.status == 403) {
+                                toast.fire({
+                                    type: 'error',
+                                    title: 'Action Unauthorized'
+                                });
+                            }
                             swal("Failed!", "There was something wrong.", "warning");
                         });
                     }
@@ -183,6 +189,13 @@
                         type: 'success',
                         title: 'Plan updated successfully'
                     });
+                }).catch(error => {
+                    if(error.response.status == 403) {
+                        toast.fire({
+                            type: 'error',
+                            title: 'Action Unauthorized'
+                        });
+                    }
                 })
             },
             newPlan() {
@@ -204,8 +217,13 @@
                     this.$Progress.finish();
                     Fire.$emit('Refresh');
 
-                }).catch(err => {
-
+                }).catch(error => {
+                    if(error.response.status == 403) {
+                        toast.fire({
+                            type: 'error',
+                            title: 'Action Unauthorized'
+                        });
+                    }
                 })
             },
             loadPlans() {

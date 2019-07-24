@@ -13,11 +13,11 @@ const mix = require('laravel-mix');
 mix
 /* CSS */
     // .sass('resources/assets/sass/main.scss', 'public/css/bky.css')
-    .sass('resources/assets/sass/codebase/themes/corporate.scss', 'public/css/themes/')
-    .sass('resources/assets/sass/codebase/themes/earth.scss', 'public/css/themes/')
-    .sass('resources/assets/sass/codebase/themes/elegance.scss', 'public/css/themes/')
-    .sass('resources/assets/sass/codebase/themes/flat.scss', 'public/css/themes/')
-    .sass('resources/assets/sass/codebase/themes/pulse.scss', 'public/css/themes/')
+    // .sass('resources/assets/sass/codebase/themes/corporate.scss', 'public/css/themes/')
+    // .sass('resources/assets/sass/codebase/themes/earth.scss', 'public/css/themes/')
+    // .sass('resources/assets/sass/codebase/themes/elegance.scss', 'public/css/themes/')
+    // .sass('resources/assets/sass/codebase/themes/flat.scss', 'public/css/themes/')
+    // .sass('resources/assets/sass/codebase/themes/pulse.scss', 'public/css/themes/')
 
     /* JS */
     .js('resources/assets/js/laravel/app.js', 'public/js/laravel.app.js')

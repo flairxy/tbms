@@ -28,11 +28,13 @@
     <!-- Styles -->
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/bky.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/codebase.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/codebase.min.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">
@@ -66,16 +68,16 @@
                                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                                 <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r"
                                         data-toggle="layout" data-action="sidebar_close">
-                                    <i class="fa fa-times text-danger"></i>
+                                    <i class="fa fa-navicon text-primary-dark"></i>
                                 </button>
                                 <!-- END Close Sidebar -->
 
                                 <!-- Logo -->
                                 <div class="content-header-item">
-                                    <a class="link-effect font-w700" href="/">
-                                        <i class="si si-fire text-primary"></i>
-                                        <span class="font-size-xl text-dual-primary-dark">Blue</span><span
-                                            class="font-size-xl text-primary">Key</span>
+                                    <a class="font-w700" href="/">
+                                          <span>
+                                <img style="width: 70%" src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
+                            </span>
                                     </a>
                                 </div>
                                 <!-- END Logo -->
@@ -115,7 +117,7 @@
                                 <router-link to="dashboard" tag="li">
                                     {{--                                <li>--}}
                                     <a class="active" href="">
-                                        <i class="si si-cup"></i>
+                                        <i class="si si-map"></i>
                                         <span class="sidebar-mini-hide">
                                                 Dashboard
                                         </span>
@@ -124,7 +126,7 @@
                                 </router-link>
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-puzzle"></i>
+                                        <i class="si si-wallet"></i>
                                         <span class="sidebar-mini-hide">Wallet</span>
                                     </a>
                                     <ul>

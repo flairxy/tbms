@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router'
 import AdminDashboard from './views/admin/Dashboard'
+import Emsil from './views/admin/email'
 import Error from './components/Error'
 import UserProfile from './views/user/Profile'
 import userWallet from './views/user/wallet/Wallet'
@@ -29,6 +30,7 @@ export let routes = [
     {path: '/management/gateways', name: 'gateways', component: Gateways},
     {path: '/management/plans', name: 'plans', component: Plans},
     {path: '/management/settings', name: 'settings', component: Settings},
+    {path: '/management/email', name: 'email', component: Emsil},
 
     //Authentication
     {path: '/login', name: 'login', component: Login},

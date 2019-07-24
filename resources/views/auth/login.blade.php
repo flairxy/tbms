@@ -23,10 +23,10 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a class="link-effect font-w700" href="/">
-                            <i class="si si-fire"></i>
-                            <span class="font-size-xl text-primary-dark">Blue</span><span
-                                class="font-size-xl">key</span>
+                        <a class="font-w700" href="/">
+                            <span>
+                                <img src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
+                            </span>
                         </a>
                         <h1 class="h3 font-w700 mt-30 mb-10">Access Your Dashboard</h1>
                         <h2 class="h5 font-w400 text-muted mb-0">Please sign in</h2>

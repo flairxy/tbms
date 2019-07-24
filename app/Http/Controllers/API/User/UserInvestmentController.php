@@ -25,6 +25,7 @@ class UserInvestmentController extends Controller
 
         $plan = Plan::findOrFail($request->plan);
         $start = Carbon::now();
+        $last_profited = Carbon::now()->addWeek();
         $end = Carbon::now()->addWeeks($plan->duration);
         $rate = Setting::whereName('BKY_EXCHANGE_RATE')->first();
 
@@ -34,9 +35,11 @@ class UserInvestmentController extends Controller
             Investment::create([
                 'end' => $end,
                 'start' => $start,
+                'last_profit' => $last_profited,
                 'amount' => $request->amount,
                 'user_id' => $request->user,
                 'plan' => $plan->name,
+                'plan_id' => $plan->id,
                 'gateway' => $request->gateway,
                 'charge' => $request->charge ?? 0,
                 'reference_id' => Str::random(10),

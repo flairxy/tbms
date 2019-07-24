@@ -26,7 +26,53 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
+        Gate::define('isSuperAdmin', function ($user) {
+            if ($user->hasRole('super-admin')) {
+                return true;
+            }
+            return false;
+        });
 
-        //
+        Gate::define('isAdmin', function ($user) {
+            if ($user->hasRole('admin')) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('isFinanceAdmin', function ($user) {
+            if ($user->hasRole('finance-admin')) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('isSupportAdmin', function ($user) {
+            if ($user->hasRole('support-admin')) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('isSAF', function ($user) {
+            if ($user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('finance-admin')) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('isSA', function ($user) {
+            if ($user->hasRole('super-admin') || $user->hasRole('admin')) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('isSAS', function ($user) {
+            if ($user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('support-admin')) {
+                return true;
+            }
+            return false;
+        });
     }
 }

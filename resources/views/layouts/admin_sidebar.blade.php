@@ -14,18 +14,18 @@
     <script src="{{ asset('js/codebase.core.min.js') }}"></script>
 
 
-<!-- Fonts -->
+    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/bky.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">
+    {{--    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">
@@ -65,10 +65,13 @@
 
                                 <!-- Logo -->
                                 <div class="content-header-item">
-                                    <a class="link-effect font-w700" href="/">
-                                        <i class="si si-fire text-primary"></i>
-                                        <span class="font-size-xl text-dual-primary-dark">Blue</span><span
-                                            class="font-size-xl text-primary">Key</span>
+                                    <a class="font-w700" href="/">
+                                           <span>
+                                               <img style="width: 70%" src="{{asset('media/logoB.png')}}"
+                                                    alt="bluekey_logo">
+
+                                            </span>
+
                                     </a>
                                 </div>
                                 <!-- END Logo -->
@@ -88,14 +91,14 @@
 
                             <!-- Visible only in normal mode -->
                             <div class="sidebar-mini-hidden-b text-center">
-                                <router-link class="img-link" to="profile">
+                                <router-link class="img-link" to="">
                                     <img class="img-avatar" src="{{asset('media/avatars/avatar15.jpg')}}" alt="">
                                 </router-link>
                                 <ul class="list-inline mt-10">
-                                    <router-link to="profile" tag="li" class="list-inline-item">
+                                    <li class="list-inline-item">
                                         <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"
                                            href="#">{{Auth::user()->username}}</a>
-                                    </router-link>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- END Visible only in normal mode -->
@@ -105,60 +108,75 @@
                         <!-- Side Navigation -->
                         <div class="content-side content-side-full">
                             <ul class="nav-main">
-                                <router-link to="dashboard" tag="li">
+                                <router-link to="/management/dashboard" tag="li">
                                     {{--                                <li>--}}
                                     <a class="active" href="">
-                                        <i class="si si-cup"></i>
+                                        <i class="si si-compass"></i>
                                         <span class="sidebar-mini-hide">
                                                 Dashboard
                                         </span>
                                     </a>
                                     {{--                                </li>--}}
                                 </router-link>
-                                <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-puzzle"></i>
-                                        <span class="sidebar-mini-hide">Transactions</span>
-                                    </a>
-                                    <ul>
-                                        <router-link to="deposits" tag="li">
-                                            <a href="javascript:void(0)">Deposits</a>
-                                        </router-link>
+                                @can('isSAF')
+                                    <li>
+                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                            <i class="si si-bar-chart"></i>
+                                            <span class="sidebar-mini-hide">Transactions</span>
+                                        </a>
+                                        <ul>
+                                            <router-link to="deposits" tag="li">
+                                                <a href="javascript:void(0)">Deposits</a>
+                                            </router-link>
 
-                                        <router-link to="withdrawals" tag="li">
-                                            <a href="javascript:void(0)">Withdrawal History</a>
-                                        </router-link>
-                                    </ul>
-                                </li>
+                                            <router-link to="withdrawals" tag="li">
+                                                <a href="javascript:void(0)">Withdrawal History</a>
+                                            </router-link>
+                                        </ul>
+                                    </li>
+                                @endcan
+                                @can('isSAS')
+                                    <router-link to="email" tag="li">
+                                        <a class="av-menu" href="javascript:void(0)">
+                                            <i class="si si-envelope-letter"></i>
+                                            Mail
+                                        </a>
+                                    </router-link>
+                                @endcan
+
                                 <router-link to="users" tag="li">
                                     <a class="av-menu" href="javascript:void(0)">
                                         <i class="si si-users"></i>
                                         Users
                                     </a>
                                 </router-link>
-                                <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-puzzle"></i>
-                                        <span class="sidebar-mini-hide">Site Management</span>
-                                    </a>
-                                    <ul>
-                                        <router-link to="plans" tag="li">
-                                            <a href="javascript:void(0)">Plans</a>
-                                        </router-link>
+                                {{--                                @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('super-admin'))--}}
+                                @can('isSA')
+                                    <li>
+                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                            <i class="si si-settings"></i>
+                                            <span class="sidebar-mini-hide">Site Management</span>
+                                        </a>
+                                        <ul>
+                                            <router-link to="plans" tag="li">
+                                                <a href="javascript:void(0)">Plans</a>
+                                            </router-link>
 
-                                        <router-link to="gateways" tag="li">
-                                            <a href="">Gateways</a>
-                                        </router-link>
+                                            <router-link to="gateways" tag="li">
+                                                <a href="">Gateways</a>
+                                            </router-link>
 
-                                        <router-link to="administration" tag="li">
-                                            <a href="javascript:void(0)">Administration</a>
-                                        </router-link>
+                                            <router-link to="administration" tag="li">
+                                                <a href="javascript:void(0)">Administration</a>
+                                            </router-link>
 
-                                        <router-link to="settings" tag="li">
-                                            <a href="javascript:void(0)">Settings</a>
-                                        </router-link>
-                                    </ul>
-                                </li>
+                                            <router-link to="settings" tag="li">
+                                                <a href="javascript:void(0)">Settings</a>
+                                            </router-link>
+                                        </ul>
+                                    </li>
+                                @endcan
+                                {{--                                @endif--}}
                                 <li>
                                     <a class="nav-menu" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -233,7 +251,7 @@
         <main id="main-container">
             <!-- Page Content -->
             <div class="content">
-{{--                <div id="page-loader" class="show bg-gd-default"></div>--}}
+                {{--                <div id="page-loader" class="show bg-gd-default"></div>--}}
                 @yield('content')
             </div>
             <!-- END Page Content -->
@@ -284,5 +302,4 @@
 <script src="{{ mix('js/codebase.app.js') }}"></script>
 <script src="{{ mix('js/laravel.app.js') }}"></script>
 <script src="{{ asset('js/vue-app.js') }}"></script>
-
 </html>

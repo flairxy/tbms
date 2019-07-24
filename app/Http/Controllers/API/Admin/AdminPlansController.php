@@ -18,6 +18,8 @@ class AdminPlansController extends Controller
             'percentage' => 'required',
         ]);
 
+        $this->authorize('isSuperAdmin');
+
         $plan = new Plan();
         $plan->fill($request->all());
         $plan->save();
@@ -33,6 +35,8 @@ class AdminPlansController extends Controller
             'percentage' => 'required',
         ]);
 
+        $this->authorize('isSuperAdmin');
+
         $plan = Plan::findOrFail($id);
         $plan->fill($request->all());
         $plan->save();
@@ -40,6 +44,8 @@ class AdminPlansController extends Controller
     }
 
     public function delete($id) {
+        $this->authorize('isSuperAdmin');
+
         $plan = Plan::find($id);
         $plan->delete();
         return response([

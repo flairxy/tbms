@@ -10,15 +10,33 @@ export default {
         return axios.get(`api/user`, data)
     },
     userRegistration(data) {
-        return axios.post(`api/register`, data)
+        return axios.post(`${admin}/user/admin/create`, data)
     },
     userLogin(data) {
         return axios.post(`api/login`, data)
     },
 
     //DEPOSITS
+    totalDeposits() {
+        return axios.get(`${admin}/user/deposit/total-deposits`)
+    },
+    totalPendingDeposits() {
+        return axios.get(`${admin}/user/deposit/pending-deposits`)
+    },
+    totalWithdrawals() {
+        return axios.get(`${admin}/user/deposit/total-withdrawals`)
+    },
+    totalPendingWithdrawals() {
+        return axios.get(`${admin}/user/deposit/pending-withdrawals`)
+    },
+    totalUsers() {
+        return axios.get(`${admin}/user/deposit/total-users`)
+    },
     fetchDeposits(data) {
-        return axios.get(`${admin}/user/deposit`, data)
+        return axios.get(`${admin}/user/deposit?page=`, data)
+    },
+    depositUpdate(data, id) {
+        return axios.post(`${admin}/user/deposit/update/${id}`, data)
     },
     userDeposit(data) {
         return axios.post(`${user}/deposit/create`, data)
@@ -42,6 +60,9 @@ export default {
     withdrawalDelete(id) {
         return axios.post(`${admin}/user/withdrawal/delete/${id}`)
     },
+    withdrawalUpdate(data, id) {
+        return axios.post(`${admin}/user/withdrawal/update/${id}`, data)
+    },
     userWithdrawal(data) {
         return axios.post(`${user}/withdrawal/create`, data)
     },
@@ -62,6 +83,10 @@ export default {
     //Users
     fetchUsers(data) {
         return axios.get(`${admin}/user`, data)
+
+    },
+    fetchAdminUsers(data) {
+        return axios.get(`${admin}/user/admins`, data)
 
     },
 
@@ -94,6 +119,10 @@ export default {
     //Gateways
     viewGateways() {
         return axios.get(`${admin}/${gateway}/`)
+
+    },
+    sendEmails(data) {
+        return axios.post(`${admin}/email/create`, data)
 
     },
     createGateway(data) {
@@ -146,7 +175,28 @@ export default {
     viewAccounts(id) {
         return axios.get(`${user}/${profile}/${id}/accounts`)
     },
+    getAccounts() {
+        return axios.get(`${user}/${profile}/accounts`)
+    },
+    passwordUpdate(data) {
+        return axios.post(`${user}/${profile}/update-password`, data)
+    },
 
+    userStatusUpdate(data, id) {
+        return axios.post(`${user}/${profile}/${id}/update-status`, data)
+    },
+    userAdminStatusUpdate(data, id) {
+        return axios.post(`${user}/${profile}/${id}/admin-status`, data)
+    },
 
+    userDelete(id) {
+        return axios.post(`${user}/${profile}/${id}/delete-user`)
+    },
 
+    fetchUserRoles() {
+        return axios.get(`${admin}/user/roles`)
+    },
+    fetchAdminRoles(id) {
+        return axios.get(`${admin}/user/${id}/admin-roles`)
+    }
 }

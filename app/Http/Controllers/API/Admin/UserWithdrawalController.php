@@ -9,6 +9,7 @@ use App\Withdrawal;
 class UserWithdrawalController extends Controller
 {
     public function index(Request $request) {
+        $this->authorize('isSAF');
         $filter = $request->filter;
         $filterSlug = $request->filterSlug;
         $number = $request->number;
@@ -25,6 +26,7 @@ class UserWithdrawalController extends Controller
     }
 
     public function reject($id) {
+        $this->authorize('isSAF');
         Withdrawal::whereId($id)->update([
             'status' => 2
         ]);
@@ -32,6 +34,7 @@ class UserWithdrawalController extends Controller
     }
 
     public function approve($id) {
+        $this->authorize('isSAF');
         Withdrawal::whereId($id)->update([
             'status' => 1
         ]);
@@ -39,9 +42,19 @@ class UserWithdrawalController extends Controller
     }
 
     public function delete($id) {
+        $this->authorize('isSuperAdmin');
         $deposit = Withdrawal::findOrFail($id);
         $deposit->delete();
         return response('Withdrawal request deleted successfully');
 
+    }
+
+    public function update(Request $request, $id) {
+        $this->authorize('isSAF');
+        $withdrawal = Withdrawal::findOrFail($id);
+        $withdrawal->hash = $request->hash;
+        $withdrawal->status = $request->status;
+        $withdrawal->save();
+        return response($withdrawal);
     }
 }

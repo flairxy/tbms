@@ -13,7 +13,7 @@
 
 //Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
@@ -23,11 +23,11 @@ Route::get('/', function () {
 
 Route::get('/invite/join/{name}', 'HomeController@registerRef');
 
-Route::group(['middleware' => ['auth', 'admin']], function () {
+Route::group(['middleware' => ['auth', 'admin', 'ban']], function () {
     Route::get('management/{any}', 'AdminController@index')->where('any', '.*');
 });
 
-Route::group(['middleware'=> 'auth'], function () {
+Route::group(['middleware'=> ['auth', 'user', 'ban', 'verified']], function () {
     Route::get('{any}', 'UserController@index')->where('any', '.*');
 });
 

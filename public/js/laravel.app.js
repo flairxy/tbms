@@ -495,74 +495,14 @@ eval("window._ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodas
 
 /***/ }),
 
-/***/ "./resources/assets/sass/codebase/themes/corporate.scss":
-/*!**************************************************************!*\
-  !*** ./resources/assets/sass/codebase/themes/corporate.scss ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL2NvcnBvcmF0ZS5zY3NzP2ZhMmQiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL2NvcnBvcmF0ZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/assets/sass/codebase/themes/corporate.scss\n");
-
-/***/ }),
-
-/***/ "./resources/assets/sass/codebase/themes/earth.scss":
-/*!**********************************************************!*\
-  !*** ./resources/assets/sass/codebase/themes/earth.scss ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL2VhcnRoLnNjc3M/NjE3NCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9hc3NldHMvc2Fzcy9jb2RlYmFzZS90aGVtZXMvZWFydGguc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/assets/sass/codebase/themes/earth.scss\n");
-
-/***/ }),
-
-/***/ "./resources/assets/sass/codebase/themes/elegance.scss":
-/*!*************************************************************!*\
-  !*** ./resources/assets/sass/codebase/themes/elegance.scss ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL2VsZWdhbmNlLnNjc3M/NWY1OSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9hc3NldHMvc2Fzcy9jb2RlYmFzZS90aGVtZXMvZWxlZ2FuY2Uuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/assets/sass/codebase/themes/elegance.scss\n");
-
-/***/ }),
-
-/***/ "./resources/assets/sass/codebase/themes/flat.scss":
-/*!*********************************************************!*\
-  !*** ./resources/assets/sass/codebase/themes/flat.scss ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL2ZsYXQuc2Nzcz9kYmFiIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2Fzc2V0cy9zYXNzL2NvZGViYXNlL3RoZW1lcy9mbGF0LnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/assets/sass/codebase/themes/flat.scss\n");
-
-/***/ }),
-
-/***/ "./resources/assets/sass/codebase/themes/pulse.scss":
-/*!**********************************************************!*\
-  !*** ./resources/assets/sass/codebase/themes/pulse.scss ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYXNzZXRzL3Nhc3MvY29kZWJhc2UvdGhlbWVzL3B1bHNlLnNjc3M/YzAyOSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9hc3NldHMvc2Fzcy9jb2RlYmFzZS90aGVtZXMvcHVsc2Uuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/assets/sass/codebase/themes/pulse.scss\n");
-
-/***/ }),
-
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/laravel/app.js ./resources/assets/sass/codebase/themes/corporate.scss ./resources/assets/sass/codebase/themes/earth.scss ./resources/assets/sass/codebase/themes/elegance.scss ./resources/assets/sass/codebase/themes/flat.scss ./resources/assets/sass/codebase/themes/pulse.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************!*\
+  !*** multi ./resources/assets/js/laravel/app.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/js/laravel/app.js */"./resources/assets/js/laravel/app.js");
-__webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/sass/codebase/themes/corporate.scss */"./resources/assets/sass/codebase/themes/corporate.scss");
-__webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/sass/codebase/themes/earth.scss */"./resources/assets/sass/codebase/themes/earth.scss");
-__webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/sass/codebase/themes/elegance.scss */"./resources/assets/sass/codebase/themes/elegance.scss");
-__webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/sass/codebase/themes/flat.scss */"./resources/assets/sass/codebase/themes/flat.scss");
-module.exports = __webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/sass/codebase/themes/pulse.scss */"./resources/assets/sass/codebase/themes/pulse.scss");
+module.exports = __webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/js/laravel/app.js */"./resources/assets/js/laravel/app.js");
 
 
 /***/ })

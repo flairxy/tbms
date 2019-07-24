@@ -17,21 +17,22 @@ class UserWithdrawalController extends Controller
     {
         $this->validate($request, [
             'amount' => 'required',
-            'gateway' => 'required',
+//            'gateway' => 'required',
             'address' => 'required',
         ]);
 
         $rate = Setting::whereName('BKY_EXCHANGE_RATE')->first();
-        $gateway = Gateway::findOrFail($request->gateway);
+//        $gateway = Gateway::findOrFail($request->gateway);
         $account = Account::whereUserId($request->user)->first();
-        $charge = (($gateway->charge / 100) * $request->amount);
+//        $charge = (($gateway->charge / 100) * $request->amount);
+        $charge = 0;
         if ($account->bky >= $request->amount) {
             Withdrawal::create([
                 'transaction_id' => Str::random(10),
                 'user_id' => $request->user,
                 'charge' => $charge,
                 'address' => $request->address,
-                'gateway' => $gateway->name,
+                'gateway' => 'BKY',
                 'status' => 0,
                 'net_amount' => $request->amount - $charge,
             ]);
@@ -55,4 +56,5 @@ class UserWithdrawalController extends Controller
         $withdrawals = Withdrawal::whereUserId($id)->orderBy('id', 'desc')->get();
         return response($withdrawals);
     }
+
 }
