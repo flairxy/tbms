@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Account;
+use App\Driver;
 use App\Setting;
 use Illuminate\Console\Command;
 
@@ -42,7 +42,7 @@ class CoinRate extends Command
         $exchange_rate = Setting::whereName('BKY_EXCHANGE_RATE')->first();
         $true_rate = $exchange_rate->value;
 
-        $accounts = Account::all();
+        $accounts = Driver::all();
         foreach ($accounts as $account) {
             $account->bky = $true_rate * $account->bky2;
             $account->save();

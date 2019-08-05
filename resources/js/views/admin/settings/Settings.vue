@@ -12,14 +12,14 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Value</th>
+                        <th>Amount</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="setting in settings" :key="setting.id">
                         <td class="font-w600">{{setting.name}}</td>
-                        <td class="font-w600">{{setting.value}}</td>
+                        <td class="font-w600">{{setting.amount}}</td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" @click="settingDelete(setting.id, setting)"
@@ -53,13 +53,14 @@
                                         <label for="name" class="text-muted">Name</label>
                                         <select class="form-control" v-model="form.name">
                                             <option value="" disabled>select name</option>
-                                            <option value="REFERRAL_BONUS">REFERRAL BONUS</option>
-                                            <option value="BKY_EXCHANGE_RATE">BKY EXCHANGE RATE</option>
+                                            <option value="taxi">Taxi Price</option>
+                                            <option value="bus">Bus Price</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="text-muted">Value</label>
-                                        <input v-model="form.value" type="text" class="form-control" id="name" required>
+                                        <input v-model="form.amount" type="text" class="form-control" id="name"
+                                               required>
                                     </div>
                                     <button type="submit" class="btn btn-lg btn-outline-success mb-2">Create
                                     </button>
@@ -84,7 +85,7 @@
                 form: new Form({
                     id: '',
                     name: '',
-                    value: ''
+                    amount: ''
                 })
             }
         },
@@ -113,22 +114,15 @@
 
                     // Send request to the server
                     if (result.value) {
-                        UsersRepository.deleteSetting(id).then(response => {
+                        axios.post(`/api/admin/setting/${id}/delete`).then(response => {
                             const settingIndex = this.settings.findIndex(p => p.id === setting.id);
                             this.settings.splice(settingIndex, 1);
-                            swal.fire(
-                                'Deleted!',
-                                response.data.message,
-                                response.data.status
-                            );
+                            toast.fire({
+                                type: 'success',
+                                title: 'Deleted!'
+                            });
                         }).catch(error => {
-                            if (error.response.status == 403) {
-                                toast.fire({
-                                    type: 'error',
-                                    title: 'Action Unauthorized'
-                                });
-                            } else
-                                swal("Failed!", "There was something wrong.", "warning");
+                            swal("Failed!", "There was something wrong.", "warning");
                         });
                     }
                 })

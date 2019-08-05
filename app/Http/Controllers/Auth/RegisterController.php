@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Account;
+use App\Driver;
 use App\Referral;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -52,7 +52,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -67,13 +68,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'username' => $data['username'],
+            'name' => $data['name'],
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-
-        Account::create([
-            'user_id' => $user->id
         ]);
 
         return $user;

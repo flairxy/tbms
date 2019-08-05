@@ -27,14 +27,10 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function registerRef($name) {
+    public function registerRef()
+    {
 
-        $check = User::whereUsername($name)->first();
-//        dd($check);
-        if($check && $check->username != 'super-admin' && $check->username != 'admin') {
-            return view('auth.registerRef', ['reflink' => $name]);
-        }
-        return redirect('/register');
+        return view('auth.registerRef');
     }
 
 }

@@ -66,12 +66,9 @@
                                 <!-- Logo -->
                                 <div class="content-header-item">
                                     <a class="font-w700" href="/">
-                                           <span>
-                                               <img style="width: 70%" src="{{asset('media/logoB.png')}}"
-                                                    alt="bluekey_logo">
-
-                                            </span>
-
+                                        <i class="text-primary-dark fa fa-cab"></i>
+                                        <span class="font-size-xl">UNN</span><span
+                                            class="font-size-xl text-primary-dark">TBMS</span>
                                     </a>
                                 </div>
                                 <!-- END Logo -->
@@ -97,7 +94,7 @@
                                 <ul class="list-inline mt-10">
                                     <li class="list-inline-item">
                                         <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"
-                                           href="#">{{Auth::user()->username}}</a>
+                                           href="#">{{Auth::user()->name}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -118,64 +115,58 @@
                                     </a>
                                     {{--                                </li>--}}
                                 </router-link>
-                                @can('isSAF')
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-bar-chart"></i>
-                                            <span class="sidebar-mini-hide">Transactions</span>
-                                        </a>
-                                        <ul>
-                                            <router-link to="deposits" tag="li">
-                                                <a href="javascript:void(0)">Deposits</a>
-                                            </router-link>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                        <i class="si si-bar-chart"></i>
+                                        <span class="sidebar-mini-hide">Transactions</span>
+                                    </a>
+                                    <ul>
+                                        <router-link to="rides" tag="li">
+                                            <a href="javascript:void(0)">Rides</a>
+                                        </router-link>
 
-                                            <router-link to="withdrawals" tag="li">
-                                                <a href="javascript:void(0)">Withdrawal History</a>
-                                            </router-link>
-                                        </ul>
-                                    </li>
-                                @endcan
-                                @can('isSAS')
-                                    <router-link to="email" tag="li">
-                                        <a class="av-menu" href="javascript:void(0)">
-                                            <i class="si si-envelope-letter"></i>
-                                            Mail
-                                        </a>
-                                    </router-link>
-                                @endcan
-
-                                <router-link to="users" tag="li">
-                                    <a class="av-menu" href="javascript:void(0)">
+                                        <router-link to="payments" tag="li">
+                                            <a href="javascript:void(0)">Payments</a>
+                                        </router-link>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-users"></i>
-                                        Users
+                                        <span class="sidebar-mini-hide">Users</span>
+                                    </a>
+                                    <ul>
+                                        <router-link to="users" tag="li">
+                                            <a href="javascript:void(0)">Users</a>
+                                        </router-link>
+
+                                        <router-link to="drivers" tag="li">
+                                            <a href="javascript:void(0)">Drivers</a>
+                                        </router-link>
+                                    </ul>
+                                </li>
+
+
+                                <router-link to="email" tag="li">
+                                    <a class="av-menu" href="javascript:void(0)">
+                                        <i class="si si-envelope-letter"></i>
+                                        Mail
                                     </a>
                                 </router-link>
                                 {{--                                @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('super-admin'))--}}
-                                @can('isSA')
-                                    <li>
-                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-settings"></i>
-                                            <span class="sidebar-mini-hide">Site Management</span>
-                                        </a>
-                                        <ul>
-                                            <router-link to="plans" tag="li">
-                                                <a href="javascript:void(0)">Plans</a>
-                                            </router-link>
 
-                                            <router-link to="gateways" tag="li">
-                                                <a href="">Gateways</a>
-                                            </router-link>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                        <i class="si si-settings"></i>
+                                        <span class="sidebar-mini-hide">Site Management</span>
+                                    </a>
+                                    <ul>
+                                        <router-link to="settings" tag="li">
+                                            <a href="javascript:void(0)">Settings</a>
+                                        </router-link>
+                                    </ul>
+                                </li>
 
-                                            <router-link to="administration" tag="li">
-                                                <a href="javascript:void(0)">Administration</a>
-                                            </router-link>
-
-                                            <router-link to="settings" tag="li">
-                                                <a href="javascript:void(0)">Settings</a>
-                                            </router-link>
-                                        </ul>
-                                    </li>
-                                @endcan
                                 {{--                                @endif--}}
                                 <li>
                                     <a class="nav-menu" href="{{ route('logout') }}"
@@ -262,10 +253,10 @@
         <footer id="page-footer" class="opacity-0">
             <div class="content py-20 font-size-xs clearfix">
                 <div class="float-right">
-                    Developed by <a class="font-w600" href="#" target="_blank">BxtLab</a>
+                    Developed by <a class="font-w600" href="#" target="_blank">Humphrey</a>
                 </div>
                 <div class="float-left">
-                    <a class="font-w600" href="#" target="_blank">BlueKey</a> &copy; <span
+                    <a class="font-w600" href="#" target="_blank">UNNTBMS</a> &copy; <span
                         class="js-year-copy">2019</span>
                 </div>
             </div>

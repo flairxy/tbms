@@ -32,7 +32,12 @@ class LoginController extends Controller
 
         if (Auth::user()->role == '0') {
             session()->flash('success', 'Login Successful');
-            $this->redirectTo = '/dashboard';
+            $this->redirectTo = '/user/dashboard';
+            return $this->redirectTo;
+        }
+        if (Auth::user()->role == '2') {
+            session()->flash('success', 'Login Successful');
+            $this->redirectTo = '/driver/dashboard';
             return $this->redirectTo;
         }
         session()->flash('success', 'Login Successful');

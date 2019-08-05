@@ -502,7 +502,7 @@ eval("window._ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodas
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/bitfxt/bky/BKY/resources/assets/js/laravel/app.js */"./resources/assets/js/laravel/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/Humphrey/Taxify/resources/assets/js/laravel/app.js */"./resources/assets/js/laravel/app.js");
 
 
 /***/ })

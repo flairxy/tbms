@@ -3,7 +3,7 @@
 @section('content')
     {{--    <main id="main-container">--}}
     <!-- Page Content -->
-    <div class="bg-image" style="background-image: url({{asset('media/photos/photo34@2x.jpg')}})">
+    <div class="bg-image" style="background-image: url({{asset('media/photos/slide_2.jpg')}})">
         <div class="row mx-0 bg-black-op">
             <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                 <div class="p-30 invisible" data-toggle="appear">
@@ -24,12 +24,12 @@
                             </div>
                         @endif
                         <a class="font-w700" href="/">
-                            <span>
-                                <img src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
-                            </span>
+                            <i class="fa fa-cab"></i>
+                            <span class="font-size-xl">UNN</span><span
+                                class="font-size-xl text-primary-dark">TBMS</span>
                         </a>
-                        <h1 class="h3 font-w700 mt-30 mb-10">Access Your Dashboard</h1>
-                        <h2 class="h5 font-w400 text-muted mb-0">Please sign in</h2>
+                        <h1 class="h3 font-w700 mt-30 mb-10">Sign In</h1>
+{{--                        <h2 class="h5 font-w400 text-muted mb-0">Please sign in</h2>--}}
                     </div>
 
                     <form class="js-validation-signin px-30" action="{{ route('login') }}" method="POST" id="login">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use App\Driver;
 use App\Referral;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -24,37 +25,32 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
-    public function registerWithReflin(Request $request) {
+    public function registerAsDriver(Request $request) {
 
         $this->validator($request->all())->validate();
-        $data = $request->all();
-        $user = User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        try {
+            $data = $request->all();
+            $user = User::create([
+                'name' => $data['name'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role'=> 2
+            ]);
 
-        Account::create([
-            'user_id' => $user->id
-        ]);
-
-        if($data['reflink']) {
-            $parent = User::whereUsername($data['reflink'])->first();
-            if ($parent) {
-                Referral::create([
-                    'user_id' => $user->id,
-                    'parent_id' => $parent->id,
-                    'parent_link' => $parent->username,
-                ]);
-            }
+            Driver::create([
+                'user_id' => $user->id,
+                'registration_no' => 'UNN/TB/' . $user->id . random_int(10, 1000)
+            ]);
+        } catch (\Exception $e) {
         }
-        $request->session()->put('success', 'Registration Successful. Login to continue');
         return redirect('/login')->with('status', 'Registration Successful. Login to continue');
     }
 }

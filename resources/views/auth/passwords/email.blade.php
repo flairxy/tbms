@@ -18,7 +18,9 @@
                     <!-- Header -->
                     <div class="px-30 py-10">
                         <a class="link-effect font-w700" href="/">
-                            <img src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
+                            <i class="fa fa-cab"></i>
+                            <span class="font-size-xl text-primary-dark">Taxi</span><span
+                                class="font-size-xl">MS</span>
                         </a>
                         <h1 class="h3 font-w700 mt-30 mb-10">Don’t worry, we’ve got your back</h1>
                         <h2 class="h5 font-w400 text-muted mb-0">Please enter your username or email</h2>

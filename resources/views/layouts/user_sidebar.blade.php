@@ -30,7 +30,7 @@
     <link href="{{ asset('css/bky.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('css/codebase.css') }}" rel="stylesheet">--}}
 {{--    <link href="{{ asset('css/codebase.min.css') }}" rel="stylesheet">--}}
-{{--    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
 {{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
 {{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
@@ -74,10 +74,10 @@
 
                                 <!-- Logo -->
                                 <div class="content-header-item">
-                                    <a class="font-w700" href="/">
-                                          <span>
-                                <img style="width: 70%" src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
-                            </span>
+                                    <a class="font-w700" href="">
+                                        <i class="text-primary-dark fa fa-cab"></i>
+                                        <span class="font-size-xl">UNN</span><span
+                                            class="font-size-xl text-primary-dark">TBMS</span>
                                     </a>
                                 </div>
                                 <!-- END Logo -->
@@ -103,7 +103,7 @@
                                 <ul class="list-inline mt-10">
                                     <router-link to="profile" tag="li" class="list-inline-item">
                                         <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"
-                                           href="#">{{Auth::user()->username}}</a>
+                                           href="#">{{Auth::user()->name}} </a>
                                     </router-link>
                                 </ul>
                             </div>
@@ -124,35 +124,12 @@
                                     </a>
                                     {{--                                </li>--}}
                                 </router-link>
-                                <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-wallet"></i>
-                                        <span class="sidebar-mini-hide">Wallet</span>
-                                    </a>
-                                    <ul>
-                                        <router-link to="deposit" tag="li">
-                                            <a href="">Deposit History</a>
-                                        </router-link>
-
-                                        <router-link to="withdrawal" tag="li">
-                                            <a href="javascript:void(0)">Withdrawal History</a>
-                                        </router-link>
-                                    </ul>
-                                </li>
-                                <router-link to="investment" tag="li">
-                                    {{--                                <li>--}}
-                                    <a class="active" href="">
-                                        <i class="si si-chart"></i>
+                                <router-link to="history" tag="li">
+                                    <a href="javascript:void(0)">
+                                        <i class="fa fa-car"></i>
                                         <span class="sidebar-mini-hide">
-                                                Invest
+                                                History
                                         </span>
-                                    </a>
-                                    {{--                                </li>--}}
-                                </router-link>
-                                <router-link to="referrals" tag="li">
-                                    <a class="av-menu" href="javascript:void(0)">
-                                        <i class="si si-people"></i>
-                                        Referral Program
                                     </a>
                                 </router-link>
                                 {{--                                <hr>--}}
@@ -229,7 +206,7 @@
         <!-- END Header -->
 
         <!-- Main Container -->
-        <main id="main-container">
+        <main id="main-container" data-toggle="layout" data-action="sidebar_close_sm">
             <div class="content">
                 @yield('content')
             </div>
@@ -241,10 +218,10 @@
         <footer id="page-footer" class="opacity-0">
             <div class="content py-20 font-size-xs clearfix">
                 <div class="float-right">
-                    Developed by <a class="font-w600" href="#" target="_blank">BxtLab</a>
+                    Developed by <a class="font-w600" href="#" target="_blank">Humphrey</a>
                 </div>
                 <div class="float-left">
-                    <a class="font-w600" href="#" target="_blank">BlueKey</a> &copy; <span
+                    <a class="font-w600" href="#" target="_blank">UNNTBMS</a> &copy; <span
                         class="js-year-copy">2019</span>
                 </div>
             </div>
@@ -254,7 +231,6 @@
 
 </div>
 </body>
-<script src="{{ asset('js/vue-app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 <script>

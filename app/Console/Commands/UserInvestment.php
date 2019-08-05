@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Account;
+use App\Driver;
 use App\Plan;
 use App\Setting;
 use App\Style;
@@ -68,7 +68,7 @@ class UserInvestment extends Command
                         $now = Carbon::now();
                         for ($i = 1; $i <= $duration; $i++) {
                             if ($now >= $start) {
-                                $account = Account::whereUserId($user->id)->first();
+                                $account = Driver::whereUserId($user->id)->first();
                                 $account->bky += $profit;
                                 $account->bky2 += $profit / $true_rate;
                                 $account->save();
@@ -81,7 +81,7 @@ class UserInvestment extends Command
                     case 7:
                         $now = Carbon::now();
                         for ($i = 1; $i <= $duration; $i++) {
-                            $account = Account::whereUserId($user->id)->first();
+                            $account = Driver::whereUserId($user->id)->first();
                             if ($now >= $start && $start <= $end) {
                                 $account->bky += $profit;
                                 $account->bky2 += $profit / $true_rate;
@@ -97,7 +97,7 @@ class UserInvestment extends Command
                         $now = Carbon::now();
                         for ($i = 1; $i <= $duration; $i++) {
                             if ($now >= $start) {
-                                $account = Account::whereUserId($user->id)->first();
+                                $account = Driver::whereUserId($user->id)->first();
                                 $account->bky += $profit;
                                 $account->bky2 += $profit / $true_rate;
                                 $account->save();

@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'user' => \App\Http\Middleware\User::class,
         'ban' => \App\Http\Middleware\Ban::class,
+        'driver' => \App\Http\Middleware\Driver::class,
     ];
 
     /**

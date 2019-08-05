@@ -1,18 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="bg-image" style="background-image: url({{asset('media/photos/photo34@2x.jpg')}});">
-        <div class="row mx-0 bg-earth-op">
+    <div class="bg-image" style="background-image: url({{asset('media/photos/slide_3.jpg')}});">
+        <div class="row mx-0">
             <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
-                <div class="p-30 invisible" data-toggle="appear">
+                <div class="p-30 invisible mt-20" data-toggle="appear">
                     <p class="font-size-h3 font-w600 text-white mb-5">
                         We're very happy you are joining our community!
                     </p>
-                    <p class="font-size-h5 text-white">
-                        <i class="fa fa-angles-right"></i> Create your account today and receive 50% off.
-                    </p>
                     <p class="font-italic text-white-op">
-                        Copyright &copy; <span class="js-year-copy">2017</span>
+                        Copyright &copy; <span class="js-year-copy">2019</span>
                     </p>
                 </div>
             </div>
@@ -21,39 +18,35 @@
                     <!-- Header -->
                     <div class="px-30 py-10">
                         <a class="font-w700" href="/">
-                            <span>
-                                <img src="{{asset('media/logoB.png')}}" alt="bluekey_logo">
-                            </span>
+                            <i class="fa fa-cab"></i>
+                            <span class="font-size-xl">UNN</span><span
+                                class="font-size-xl text-primary-dark">TBMS</span>
                         </a>
-                        <h1 class="h3 font-w700 mt-30 mb-10">Create New Account</h1>
+                        <h1 class="h3 font-w700 mt-30 mb-10">Sign up as a driver</h1>
                         <h2 class="h5 font-w400 text-muted mb-0">Please add your details</h2>
                     </div>
-                    <form class="js-validation-signup px-30" method="POST" action="{{ route('register') }}">
+                    <form class="js-validation-signup px-30" method="POST" action="{{ route('driver-register') }}">
                         {{ csrf_field() }}
-                        @if($reflink)
-                            <input name="reflink" type="hidden" value="{{$reflink}}">
-                        @else
-                            <input name="reflink" type="hidden" value="null">
-                        @endif
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                           id="signup-username" name="username" required>
-                                    <label for="signup-username">Username</label>
-                                    @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <input type="text" name="name"  class="form-control" required>
+                                    <label>Full Name</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                           id="signup-email" name="email" required>
+                                    <input type="text" name="phone" class="form-control" required>
+                                    <label>Phone</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <div class="form-material floating">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="signup-email" name="email" required>
                                     <label for="signup-email">Email</label>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -66,8 +59,7 @@
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                           id="signup-password" name="password" required>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="signup-password" name="password" required>
                                     <label for="signup-password">Password</label>
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -80,8 +72,7 @@
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="password" class="form-control" id="signup-password-confirm"
-                                           name="password_confirmation" required>
+                                    <input type="password" class="form-control" id="signup-password-confirm" name="password_confirmation" required>
                                     <label for="signup-password-confirm">Password Confirmation</label>
                                 </div>
                             </div>

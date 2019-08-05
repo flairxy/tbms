@@ -9,6 +9,22 @@
                 <!-- DataTables functionality is initialized with .js-dataTable-simple class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                     <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="DataTables_Table_1_filter" class="dataTables_filter">
+                                <label>
+                                    Search:
+                                    <input
+                                        type="search"
+                                        class="form-control form-control-sm"
+                                        placeholder="enter name or email"
+                                        aria-controls="DataTables_Table_1"
+                                        v-model="search"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-12">
                             <table
                                 class="table table-bordered table-striped table-vcenter js-dataTable-simple dataTable no-footer"
@@ -18,12 +34,9 @@
                                     <th class="text-center" tabindex="0">
                                         #
                                     </th>
-
-                                    <th class="d-none d-sm-table-cell sorting">Username
+                                    <th class="d-none d-sm-table-cell">Name
                                     </th>
                                     <th class="d-none d-sm-table-cell">Email
-                                    </th>
-                                    <th class="d-none d-sm-table-cell">Balance
                                     </th>
                                     <th class="d-none d-sm-table-cell sorting">Status
                                     </th>
@@ -37,20 +50,15 @@
                                 <tbody>
 
 
-                                <tr role="row" class="odd" v-for="(user, index) in users">
+                                <tr role="row" class="odd" v-for="(user, index) in filteredUsers">
                                     <td class="text-center sorting_1">
                                         {{index + 1}}
                                     </td>
                                     <td class="d-none d-sm-table-cell">
-                                        {{user.username}}
+                                        {{user.name}}
                                     </td>
                                     <td class="d-none d-sm-table-cell">
                                         {{user.email}}
-                                    </td>
-                                    <td>
-                                        <span v-for="account in accounts" :key="account.id">
-                                            <span v-if="account.user_id === user.id">${{account.bky}}</span>
-                                        </span>
                                     </td>
                                     <td>
                                         <span v-if="user.ban == '0'" class="text-success"><b>Active</b></span>
@@ -94,11 +102,6 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Username</label>
-                                        <input type="text" class="form-control" :value="form.username" disabled
-                                               id="name" required>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="text" class="form-control" :value="form.email" disabled
                                                id="email" required>
@@ -134,8 +137,9 @@
     export default {
         data() {
             return {
-                accounts:[],
-                users:[],
+                search: "",
+                accounts: [],
+                users: [],
                 form: new Form({
                     id: '',
                     username: '',
@@ -149,7 +153,7 @@
                 let data = {
                     status: this.form.ban
                 };
-                UsersRepository.userStatusUpdate(data, this.form.id).then(() => {
+                axios.post(`/api/admin/user/${this.form.id}/status`, data).then(() => {
                     $('#modal-fadein').modal('hide');
                     Fire.$emit('Refresh');
                     toast.fire({
@@ -157,12 +161,10 @@
                         title: 'Status updated successfully'
                     });
                 }).catch(error => {
-                    if(error.response.status == 403) {
-                        toast.fire({
-                            type: 'error',
-                            title: 'Action Unauthorized'
-                        });
-                    }
+                    toast.fire({
+                        type: 'error',
+                        title: 'Failed to update user status'
+                    });
                 })
             },
             editModal(user) {
@@ -171,13 +173,8 @@
                 this.form.fill(user);
             },
             getUsers() {
-                UsersRepository.fetchUsers().then(response => {
+                axios.get(`/api/admin/user/users`).then(response => {
                     this.users = response.data;
-                })
-            },
-            getBalances() {
-                UsersRepository.getAccounts().then(response => {
-                    this.accounts = response.data;
                 })
             },
             deleteUser(id, user) {
@@ -193,16 +190,15 @@
 
                     // Send request to the server
                     if (result.value) {
-                        UsersRepository.userDelete(id).then(response => {
+                        axios.post(`/api/admin/user/${id}/delete`).then(response => {
                             const userIndex = this.users.findIndex(p => p.id === user.id);
                             this.users.splice(userIndex, 1);
-                            swal.fire(
-                                'Deleted!',
-                                response.data.message,
-                                response.data.status
-                            );
+                            toast.fire({
+                                type: 'success',
+                                title: 'Deleted!'
+                            });
                         }).catch(error => {
-                            if(error.response.status == 403) {
+                            if (error.response.status == 403) {
                                 toast.fire({
                                     type: 'error',
                                     title: 'Action Unauthorized'
@@ -217,10 +213,19 @@
         },
         created() {
             this.getUsers();
-            this.getBalances();
             Fire.$on('Refresh', () => {
                 this.getUsers();
-                this.getBalances();            });
+            });
+        },
+        computed: {
+            filteredUsers() {
+                return this.users.filter(user => {
+                    return (
+                        user.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                        user.email.toLowerCase().includes(this.search.toLowerCase())
+                    );
+                });
+            }
         }
 
     }

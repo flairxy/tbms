@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Account;
+use App\Driver;
 use App\Deposit;
 use App\Referral;
 use App\ReferralCount;
@@ -68,7 +68,7 @@ class UserTransactions extends Command
                         $referral_interest->save();
 
                         $bonus = $get_deposit->net_amount * $rate;
-                        $user_parent_account = Account::whereUserId($referred->parent_id)->first();
+                        $user_parent_account = Driver::whereUserId($referred->parent_id)->first();
                         $user_parent_account->bky += $bonus;
                         $user_parent_account->bky2 += $bonus / $true_rate;
                         $user_parent_account->save();

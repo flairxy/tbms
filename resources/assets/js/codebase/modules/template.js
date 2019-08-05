@@ -342,213 +342,243 @@ export default class Template {
         let layoutAPI = {
             init: () => {
                 // Unbind events in case they are already enabled
-                self._lPage.off('click.cb.layout');
-                self._lPage.off('click.cb.overlay');
+                self._lPage.off("click.cb.layout");
+                self._lPage.off("click.cb.overlay");
 
                 // Call layout API on button click
-                self._lPage.on('click.cb.layout', '[data-toggle="layout"]', e => {
-                    let el = jQuery(e.currentTarget);
+                self._lPage.on(
+                    "click.cb.layout",
+                    '[data-toggle="layout"]',
+                    e => {
+                        let el = jQuery(e.currentTarget);
 
-                    self._uiApiLayout(el.data('action'));
+                        self._uiApiLayout(el.data("action"));
 
-                    el.blur();
-                });
+                        el.blur();
+                    }
+                );
 
                 // Prepend Page Overlay div if enabled (used when Side Overlay opens)
-                if (self._lPage.hasClass('enable-page-overlay')) {
-                    self._lPage.prepend('<div id="page-overlay"></div>');
+                if (self._lPage.hasClass("enable-page-overlay")) {
+                    self._lPage.prepend(
+                        '<div id="page-overlay"></div>'
+                    );
 
-                    jQuery('#page-overlay').on('click.cb.overlay', e => {
-                        self._uiApiLayout('side_overlay_close');
-                    });
+                    jQuery("#page-overlay").on(
+                        "click.cb.overlay",
+                        e => {
+                            self._uiApiLayout("side_overlay_close");
+                        }
+                    );
                 }
             },
             sidebar_pos_toggle: () => {
-                self._lPage.toggleClass('sidebar-r');
+                self._lPage.toggleClass("sidebar-r");
             },
             sidebar_pos_left: () => {
-                self._lPage.removeClass('sidebar-r');
+                self._lPage.removeClass("sidebar-r");
             },
             sidebar_pos_right: () => {
-                self._lPage.addClass('sidebar-r');
+                self._lPage.addClass("sidebar-r");
             },
             sidebar_toggle: () => {
                 if (self._windowW > 991) {
-                    self._lPage.toggleClass('sidebar-o');
+                    self._lPage.toggleClass("sidebar-o");
                 } else {
-                    self._lPage.toggleClass('sidebar-o-xs');
+                    self._lPage.toggleClass("sidebar-o-xs");
                 }
             },
             sidebar_open: () => {
                 if (self._windowW > 991) {
-                    self._lPage.addClass('sidebar-o');
+                    self._lPage.addClass("sidebar-o");
                 } else {
-                    self._lPage.addClass('sidebar-o-xs');
+                    self._lPage.addClass("sidebar-o-xs");
                 }
             },
             sidebar_close: () => {
                 if (self._windowW > 991) {
-                    self._lPage.removeClass('sidebar-o');
+                    self._lPage.removeClass("sidebar-o");
                 } else {
-                    self._lPage.removeClass('sidebar-o-xs');
+                    self._lPage.removeClass("sidebar-o-xs");
+                }
+            },
+            sidebar_close_sm: () => {
+                if (self._windowW < 991) {
+                    self._lPage.removeClass("sidebar-o-xs");
                 }
             },
             sidebar_mini_toggle: () => {
                 if (self._windowW > 991) {
-                    self._lPage.toggleClass('sidebar-mini');
+                    self._lPage.toggleClass("sidebar-mini");
                 }
             },
             sidebar_mini_on: () => {
                 if (self._windowW > 991) {
-                    self._lPage.addClass('sidebar-mini');
+                    self._lPage.addClass("sidebar-mini");
                 }
             },
             sidebar_mini_off: () => {
                 if (self._windowW > 991) {
-                    self._lPage.removeClass('sidebar-mini');
+                    self._lPage.removeClass("sidebar-mini");
                 }
             },
             sidebar_style_inverse_toggle: () => {
-                self._lPage.toggleClass('sidebar-inverse');
+                self._lPage.toggleClass("sidebar-inverse");
             },
             sidebar_style_inverse_on: () => {
-                self._lPage.addClass('sidebar-inverse');
+                self._lPage.addClass("sidebar-inverse");
             },
             sidebar_style_inverse_off: () => {
-                self._lPage.removeClass('sidebar-inverse');
+                self._lPage.removeClass("sidebar-inverse");
             },
             side_overlay_toggle: () => {
-                if (self._lPage.hasClass('side-overlay-o')) {
-                    self._uiApiLayout('side_overlay_close');
+                if (self._lPage.hasClass("side-overlay-o")) {
+                    self._uiApiLayout("side_overlay_close");
                 } else {
-                    self._uiApiLayout('side_overlay_open');
+                    self._uiApiLayout("side_overlay_open");
                 }
             },
             side_overlay_open: () => {
-                self._lPage.addClass('side-overlay-o');
+                self._lPage.addClass("side-overlay-o");
 
                 // When ESCAPE key is hit close the side overlay
-                jQuery(document).on('keydown.cb.sideOverlay', e => {
+                jQuery(document).on("keydown.cb.sideOverlay", e => {
                     if (e.which === 27) {
                         e.preventDefault();
-                        self._uiApiLayout('side_overlay_close');
+                        self._uiApiLayout("side_overlay_close");
                     }
                 });
             },
             side_overlay_close: () => {
-                self._lPage.removeClass('side-overlay-o');
+                self._lPage.removeClass("side-overlay-o");
 
                 // Unbind ESCAPE key
-                jQuery(document).off('keydown.cb.sideOverlay');
+                jQuery(document).off("keydown.cb.sideOverlay");
             },
             side_overlay_hoverable_toggle: () => {
-                self._lPage.toggleClass('side-overlay-hover');
+                self._lPage.toggleClass("side-overlay-hover");
             },
             side_overlay_hoverable_on: () => {
-                self._lPage.addClass('side-overlay-hover');
+                self._lPage.addClass("side-overlay-hover");
             },
             side_overlay_hoverable_off: () => {
-                self._lPage.removeClass('side-overlay-hover');
+                self._lPage.removeClass("side-overlay-hover");
             },
             header_fixed_toggle: () => {
-                self._lPage.toggleClass('page-header-fixed');
+                self._lPage.toggleClass("page-header-fixed");
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_fixed_on: () => {
-                self._lPage.addClass('page-header-fixed');
+                self._lPage.addClass("page-header-fixed");
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_fixed_off: () => {
-                self._lPage.removeClass('page-header-fixed');
+                self._lPage.removeClass("page-header-fixed");
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_style_modern: () => {
-                self._lPage.removeClass('page-header-glass page-header-inverse').addClass('page-header-modern');
+                self._lPage
+                    .removeClass(
+                        "page-header-glass page-header-inverse"
+                    )
+                    .addClass("page-header-modern");
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_style_classic: () => {
-                self._lPage.removeClass('page-header-glass page-header-modern');
+                self._lPage.removeClass(
+                    "page-header-glass page-header-modern"
+                );
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_style_glass: () => {
-                self._lPage.removeClass('page-header-modern').addClass('page-header-glass');
+                self._lPage
+                    .removeClass("page-header-modern")
+                    .addClass("page-header-glass");
                 self._uiHandleHeader();
                 self._uiHandleMain();
             },
             header_style_inverse_toggle: () => {
-                if (!self._lPage.hasClass('page-header-modern')) {
-                    self._lPage.toggleClass('page-header-inverse');
+                if (!self._lPage.hasClass("page-header-modern")) {
+                    self._lPage.toggleClass("page-header-inverse");
                 }
             },
             header_style_inverse_on: () => {
-                if (!self._lPage.hasClass('page-header-modern')) {
-                    self._lPage.addClass('page-header-inverse');
+                if (!self._lPage.hasClass("page-header-modern")) {
+                    self._lPage.addClass("page-header-inverse");
                 }
             },
             header_style_inverse_off: () => {
-                if (!self._lPage.hasClass('page-header-modern')) {
-                    self._lPage.removeClass('page-header-inverse');
+                if (!self._lPage.hasClass("page-header-modern")) {
+                    self._lPage.removeClass("page-header-inverse");
                 }
             },
             header_search_on: () => {
-                self._lHeaderSearch.addClass('show');
+                self._lHeaderSearch.addClass("show");
                 self._lHeaderSearchInput.focus();
 
                 // When ESCAPE key is hit close the search section
-                jQuery(document).on('keydown.cb.header.search', e => {
+                jQuery(document).on("keydown.cb.header.search", e => {
                     if (e.which === 27) {
                         e.preventDefault();
-                        self._uiApiLayout('header_search_off');
+                        self._uiApiLayout("header_search_off");
                     }
                 });
             },
             header_search_off: () => {
-                self._lHeaderSearch.removeClass('show');
+                self._lHeaderSearch.removeClass("show");
                 self._lHeaderSearchInput.blur();
 
                 // Unbind ESCAPE key
-                jQuery(document).off('keydown.cb.header.search');
+                jQuery(document).off("keydown.cb.header.search");
             },
             header_loader_on: () => {
-                self._lHeaderLoader.addClass('show');
+                self._lHeaderLoader.addClass("show");
             },
             header_loader_off: () => {
-                self._lHeaderLoader.removeClass('show');
+                self._lHeaderLoader.removeClass("show");
             },
             side_scroll_toggle: () => {
-                self._lPage.toggleClass('side-scroll');
+                self._lPage.toggleClass("side-scroll");
                 self._uiHandleScroll();
             },
             side_scroll_on: () => {
-                self._lPage.addClass('side-scroll');
+                self._lPage.addClass("side-scroll");
                 self._uiHandleScroll();
             },
             side_scroll_off: () => {
-                self._lPage.removeClass('side-scroll');
+                self._lPage.removeClass("side-scroll");
                 self._uiHandleScroll();
             },
             content_layout_toggle: () => {
-                if (self._lPage.hasClass('main-content-boxed')) {
-                    self._uiApiLayout('content_layout_narrow');
-                } else if (self._lPage.hasClass('main-content-narrow')) {
-                    self._uiApiLayout('content_layout_full_width');
+                if (self._lPage.hasClass("main-content-boxed")) {
+                    self._uiApiLayout("content_layout_narrow");
+                } else if (
+                    self._lPage.hasClass("main-content-narrow")
+                ) {
+                    self._uiApiLayout("content_layout_full_width");
                 } else {
-                    self._uiApiLayout('content_layout_boxed');
+                    self._uiApiLayout("content_layout_boxed");
                 }
             },
             content_layout_boxed: () => {
-                self._lPage.removeClass('main-content-narrow').addClass('main-content-boxed');
+                self._lPage
+                    .removeClass("main-content-narrow")
+                    .addClass("main-content-boxed");
             },
             content_layout_narrow: () => {
-                self._lPage.removeClass('main-content-boxed').addClass('main-content-narrow');
+                self._lPage
+                    .removeClass("main-content-boxed")
+                    .addClass("main-content-narrow");
             },
             content_layout_full_width: () => {
-                self._lPage.removeClass('main-content-boxed main-content-narrow');
+                self._lPage.removeClass(
+                    "main-content-boxed main-content-narrow"
+                );
             }
         };
 

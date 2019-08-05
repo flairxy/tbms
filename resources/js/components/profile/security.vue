@@ -1,12 +1,19 @@
 <template>
     <div class="col-md-8">
         <div class="block-content">
+            <span class="text-danger">New password should be different from old password </span>
             <div v-if="errors" class="text-danger">
                 <ul>
                     <li v-for="error in errors"> {{error.toString()}}</li>
                 </ul>
             </div>
             <form action="" @submit.prevent="updatePassword">
+                <div class="form-group">
+                    <div class="form-material">
+                        <input type="password" class="form-control" id="old_password" v-model="form.old_password">
+                        <label for="old_password">Old Password</label>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="form-material">
                         <input type="password" class="form-control" id="password" v-model="form.password">
@@ -40,20 +47,22 @@
                 form: new Form({
                     password: '',
                     confirm_password: '',
+                    old_password: ''
                 })
             }
         },
         methods: {
             updatePassword() {
-                UsersRepository.loggedInUser().then(response => {
+                axios.get('/api/user').then(response => {
                     this.user = response.data;
                     let data = {
                         user: response.data.id,
+                        old_password: this.form.old_password,
                         password: this.form.password,
                         password_confirmation: this.form.confirm_password,
                     };
                     UsersRepository.passwordUpdate(data).then(response => {
-                        console.log(response);
+                        Fire.$emit("Refresh");
                         toast.fire({
                             type: response.data.status,
                             title: response.data.message
@@ -62,14 +71,20 @@
                         if (errors.response.status == 422) {
                             this.errors = errors.response.data.errors
                         }
+                        Fire.$emit("Refresh");
                         toast({
                             type: 'warning',
-                            title: 'Registration failed'
+                            title: 'Update failed'
                         });
                         this.form.reset()
                     })
                 });
             }
+        },
+        created() {
+            Fire.$on("Refresh", () => {
+
+            });
         }
     }
 </script>

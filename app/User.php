@@ -8,9 +8,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\VerifyEmailQueued;
-class User extends Authenticatable  implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,7 @@ class User extends Authenticatable  implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'reflink', 'role'
+        'name', 'email', 'password', 'phone', 'role'
     ];
 
     /**
@@ -38,26 +38,4 @@ class User extends Authenticatable  implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function permissions() {
-        return $this->belongsToMany(Permission::class,'roles_permissions');
-    }
-
-    public function roles() {
-        return $this->belongsToMany(Role::class,'user_roles');
-    }
-
-    public function hasRole( ... $roles ) {
-        foreach ($roles as $role) {
-            if ($this->roles->contains('slug', $role)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmailQueued);
-    }
 }

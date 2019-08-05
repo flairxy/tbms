@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -25,7 +26,26 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo;
+
+    protected function redirectTo() {
+
+        if (Auth::user()->role == '2') {
+            session()->flash('success', 'Login Successful');
+            $this->redirectTo = '/driver/dashboard';
+            return $this->redirectTo;
+        }
+
+        if (Auth::user()->role == '0') {
+            session()->flash('success', 'Login Successful');
+            $this->redirectTo = '/user/dashboard';
+            return $this->redirectTo;
+        }
+
+        session()->flash('success', 'Login Successful');
+        $this->redirectTo = '/management/dashboard';
+        return $this->redirectTo;
+    }
 
     /**
      * Create a new controller instance.

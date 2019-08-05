@@ -17,8 +17,9 @@ import MyDataTable from './components/DataTable'
 import AddModal from './components/AddModal'
 import VueProgressBar from 'vue-progressbar'
 import swal from 'sweetalert2'
+import StarRating from 'vue-star-rating'
 
-
+Vue.component('star-rating', StarRating);
 window.swal = swal;
 const toast = swal.mixin({
     toast: true,
