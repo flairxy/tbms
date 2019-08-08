@@ -23,6 +23,7 @@ Route::group(['as' => 'api.', 'namespace' => 'API'], function () {
             Route::group(['as' => '.user', 'prefix' => 'user'], function () {
                 Route::get('/users', ['uses' => 'AdminUsersController@users']);
                 Route::get('/drivers', ['uses' => 'AdminUsersController@drivers']);
+                Route::get('/{id}/driver', ['uses' => 'AdminUsersController@driver']);
                 Route::post('/{id}/delete', ['uses' => 'AdminUsersController@delete']);
                 Route::post('/driver/{id}/delete', ['uses' => 'AdminUsersController@deleteDriver']);
                 Route::post('/{id}/status', ['uses' => 'AdminUsersController@status']);

@@ -4,33 +4,43 @@
             <a class="breadcrumb-item" href="javascript:void(0)">Dashboard</a>
             <span class="breadcrumb-item active">Overview</span>
         </nav>
-        <div class="block">
-            <div class="block-content">
-                <div class="col-6">
-                    <label class="css-control css-control-success css-switch">
-                        <input type="checkbox" v-model="driver.available"
-                               @click.prevent="toggleAvailability(driver.id, driver)" class="css-control-input">
-                        <span class="css-control-indicator"></span>
-                        <span class="text-success" v-if="driver.available == '1'">Available</span>
-                        <span class="text-danger" v-else>Unavailable</span>
-                    </label>
+        <div  v-if="driver.approved == '0'">
+
+            <div class="block">
+                <div class="block-content">
+                    <h4>Account Under Review</h4>
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-12 col-md-4 col-xl-4">
-                <router-link class="block block-link-shadow text-center" to="history">
-                    <div class="block-content ribbon ribbon-bookmark ribbon-success ribbon-left">
-                        <div class="ribbon-box">{{count}}</div>
-                        <p class="mt-5">
-                            <i class="fa fa-cab fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Pending Ride Request</p>
+        <div v-else>
+            <div class="block">
+                <div class="block-content">
+                    <div class="col-6">
+                        <label class="css-control css-control-success css-switch">
+                            <input type="checkbox" v-model="driver.available"
+                                   @click.prevent="toggleAvailability(driver.id, driver)" class="css-control-input">
+                            <span class="css-control-indicator"></span>
+                            <span class="text-success" v-if="driver.available == '1'">Available</span>
+                            <span class="text-danger" v-else>Unavailable</span>
+                        </label>
                     </div>
-                </router-link>
+                </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 col-md-4 col-xl-4">
+                    <router-link class="block block-link-shadow text-center" to="history">
+                        <div class="block-content ribbon ribbon-bookmark ribbon-success ribbon-left">
+                            <div class="ribbon-box">{{count}}</div>
+                            <p class="mt-5">
+                                <i class="fa fa-cab fa-3x"></i>
+                            </p>
+                            <p class="font-w600">Pending Ride Request</p>
+                        </div>
+                    </router-link>
+                </div>
 
+            </div>
         </div>
         <!-- verify account modal-->
         <div

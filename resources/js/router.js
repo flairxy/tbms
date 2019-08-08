@@ -21,8 +21,8 @@ import Settings from './views/admin/settings/Settings'
 export let routes = [
     // admin routes
     {path: '/management/dashboard', name: 'admin-dashboard', component: AdminDashboard},
-    {path: '/management/rides', name: 'deposits', component: Rides},
-    {path: '/management/payments', name: 'deposits', component: Payments},
+    {path: '/management/rides', name: 'rides', component: Rides},
+    {path: '/management/payments', name: 'payments', component: Payments},
     {path: '/management/users', name: 'users', component: Users},
     {path: '/management/drivers', name: 'drivers', component: Drivers},
     {path: '/management/settings', name: 'settings', component: Settings},
@@ -39,7 +39,7 @@ export let routes = [
     {path: '/driver/history', name: 'driverHistory', component: DriverHistory},
     {path: '/driver/profile', name: 'driverProfile', component: DriverProfile},
 
-    {path: '/payment', name: 'paystack', component: Paystack},
+    {path: '/user/payment', name: 'paystack', component: Paystack},
 
 
     //general route

@@ -58,4 +58,8 @@ class AdminUsersController extends Controller
         ]);
         return 'Status Updated';
     }
+
+    public function driver($id) {
+        return  Driver::findOrFail($id);
+    }
 }

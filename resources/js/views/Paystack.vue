@@ -2,23 +2,51 @@
     <div>
         <nav class="breadcrumb bg-white push">
             <a class="breadcrumb-item" href="javascript:void(0)">Dashboard</a>
-            <span class="breadcrumb-item active">paystack</span>
+            <span class="breadcrumb-item active">Payment</span>
         </nav>
-        <div class="block">
-            <div class="block-content">
-                <paystack
-                    :amount="amount"
-                    :email="email"
-                    :paystackkey="paystackkey"
-                    :reference="reference"
-                    :callback="callback"
-                    :close="close"
-                    :embed="true"
-                >
-                    <i class="fas fa-money"></i>
-                    Make Payment
-                </paystack>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="block">
+                    <div class="block-header bg-primary">
+                        <h3 class="block-title text-white">Payment</h3>
+                    </div>
+                    <div class="block-content">
+                        <!--                content-->
+                        <form action="be_forms_premade.html" method="post" onsubmit="return false;">
+                            <div class="form-group row">
+                                <label class="col-12" for="card">Card Number</label>
+                                <div class="col-12">
+                                    <input type="tel" class="form-control" id="card"
+                                           placeholder="0000 0000 0000 0000" required autofocus
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="expiry">Expiry Date</label>
+                                <div class="col-12">
+                                    <input type="tel" class="form-control" id="expiry" placeholder="MM/YY" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="cvv">CVV</label>
+                                <div class="col-12">
+                                    <input type="tel" class="form-control" id="cvv" placeholder="987" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        <i class="fa fa-plus mr-5"></i> Pay
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-4"></div>
+
         </div>
     </div>
 </template>

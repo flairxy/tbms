@@ -40,11 +40,13 @@
                                     </th>
                                     <th class="d-none d-sm-table-cell">Car Type
                                     </th>
+                                    <th class="d-none d-sm-table-cell">Licence
+                                    </th>
+                                    <th class="d-none d-sm-table-cell">Passport
+                                    </th>
                                     <th class="d-none d-sm-table-cell">Licence Expires_at
                                     </th>
                                     <th class="d-none d-sm-table-cell sorting">Status
-                                    </th>
-                                    <th class="d-none d-sm-table-cell sorting">Joined
                                     </th>
                                     <th class="text-center" style="width: 15%;" rowspan="1" colspan="1">
                                         Action
@@ -69,16 +71,18 @@
                                         <span v-else>N/A</span>
                                     </td>
                                     <td class="d-none d-sm-table-cell">
+                                        <a href="#" @click="viewLicence(driver.id)">view</a>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell">
+                                        <a href="#" @click="viewFile(driver.id)">view</a>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell">
                                         <span v-if="driver.licence_expiry">{{driver.licence_expiry}}</span>
                                         <span v-else>N/A</span>
                                     </td>
                                     <td>
                                         <span v-if="driver.approved == '1'" class="text-success"><b>Approved</b></span>
                                         <span v-else class="text-warning"><b>Pending</b></span>
-                                    </td>
-
-                                    <td>
-                                        {{driver.created_at}}
                                     </td>
                                     <td class="text-center">
                                         <button type="button" @click.prevent="editModal(driver)"
@@ -139,6 +143,46 @@
                 </div>
             </div>
         </div>
+        <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade"
+             id="modalIMG" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content text-center">
+                    <div class="container">
+                        <div class="modal-body mb-0 p-0 mt-3">
+                            <img class="img-avatar img-avatar-thumb" src="/media/avatars/avatar11.jpg" v-if="driverx.passport== null"/>
+                            <img :src="passport_src + driverx.passport" alt="..." style="width:50%" v-else>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-primary btn-rounded btn-md ml-4 text-center"
+                                data-dismiss="modal"
+                                type="button">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade"
+             id="modalIMG2" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content text-center">
+                    <div class="container">
+                        <div class="modal-body mb-0 p-0 mt-3">
+                            <img class="img-avatar img-avatar-thumb" src="/media/avatars/avatar11.jpg" v-if="driverx.passport== null"/>
+                            <img :src="licence_src + driverx.licence" alt="..." style="width:70%" v-else>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-primary btn-rounded btn-md ml-4 text-center"
+                                data-dismiss="modal"
+                                type="button">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -149,6 +193,10 @@
     export default {
         data() {
             return {
+                driverx: '',
+                driver_passport: '',
+                passport_src: '/files/passport/',
+                licence_src: '/files/licence/',
                 search: "",
                 accounts: [],
                 drivers: [],
@@ -160,6 +208,18 @@
             }
         },
         methods: {
+            viewFile(id) {
+                $('#modalIMG').modal('show');
+                axios.get(`/api/admin/user/${id}/driver`).then(response => {
+                    this.driverx = response.data;
+                })
+            },
+            viewLicence(id) {
+                $('#modalIMG2').modal('show');
+                axios.get(`/api/admin/user/${id}/driver`).then(response => {
+                    this.driverx = response.data;
+                })
+            },
             updateUser() {
                 let data = {
                     status: this.form.status

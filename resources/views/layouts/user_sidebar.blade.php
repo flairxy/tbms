@@ -256,5 +256,6 @@
 <script src="{{ mix('js/codebase.app.js') }}"></script>
 <script src="{{ mix('js/laravel.app.js') }}"></script>
 <script src="{{ mix('js/vue-app.js') }}"></script>
+<script src="https://js.paystack.co/v2/paystack.js"></script>
 
 </html>

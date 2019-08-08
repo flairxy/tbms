@@ -7,7 +7,7 @@
 
 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="api-base-url" content="{{ url('api') }}" />
+    <meta name="api-base-url" content="{{ url('api') }}"/>
 
 
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -18,7 +18,7 @@
 
     {{--    <script src="{{ asset('js/laravel.app.js') }}"></script>--}}
     <script src="{{ asset('js/codebase.core.min.js') }}"></script>
-{{--        <script src="{{ asset('js/codebase.app.min.js') }}"></script>--}}
+    {{--        <script src="{{ asset('js/codebase.app.min.js') }}"></script>--}}
 
 
 <!-- Fonts -->
@@ -28,13 +28,13 @@
     <!-- Styles -->
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/bky.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/codebase.css') }}" rel="stylesheet">--}}
-{{--    <link href="{{ asset('css/codebase.min.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/codebase.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/codebase.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/themes/corporate.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
-{{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
-{{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
-{{--    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/earth.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/elegance.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/flat.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/themes/pulse.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">
@@ -98,7 +98,12 @@
                             <!-- Visible only in normal mode -->
                             <div class="sidebar-mini-hidden-b text-center">
                                 <router-link class="img-link" to="profile">
-                                    <img class="img-avatar" src="{{asset('media/avatars/avatar15.jpg')}}" alt="">
+                                    @if(auth()->user()->driver->approved == '0')
+                                        <img class="img-avatar" src="{{asset('media/avatars/avatar15.jpg')}}" alt="">
+                                    @else
+                                        <img class="img-avatar"
+                                             src="{{ asset('files/passport') }}/{{ auth()->user()->driver->passport }}">
+                                    @endif
                                 </router-link>
                                 <ul class="list-inline mt-10">
                                     <router-link to="profile" tag="li" class="list-inline-item">

@@ -33,6 +33,7 @@
         "laravel-vue-pagination": "^2.3.0",
         "nprogress": "^0.2.0",
         "paystack": "^2.0.1",
+        "paystack-js": "^0.18.1",
         "simplebar": "^4.0.0",
         "sweetalert2": "^8.13.3",
         "toastr": "^2.1.4",

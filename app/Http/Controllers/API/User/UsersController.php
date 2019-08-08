@@ -9,12 +9,13 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class UsersController extends Controller
 {
     public function drivers()
     {
-        $drivers = Driver::whereAvailable(1)->whereApproved(1)->get(['id', 'rating', 'user_id', 'car_type']);
+        $drivers = Driver::whereAvailable(1)->whereApproved(1)->get(['id', 'rating', 'user_id', 'car_type', 'passport']);
         $rides = Ride::where('rating', '!=', null)->get();
         $users = User::whereRole(2)->get(['id', 'name']);
         return [
@@ -50,30 +51,37 @@ class UsersController extends Controller
             return $validator->errors();
         }
         $user = Driver::whereId($id)->first();
-        $user->update([
-            'car_type' => $request->car_type,
-            'licence_expiry' => $request->licence_expiry
-        ]);
         if ($request->hasFile('passport')) {
-            $uploadedFile = $request->file('passport');
-            $name = uniqid('driver', '_') . '.' . $uploadedFile->getClientOriginalExtension();
-            $path = $uploadedFile->storePubliclyAs('public/passport/' . date('Y-W'), $name);
+            $image = $request->file('passport');
+            $filename = 'driver_'.$user->user_id. '_passport.' . $image->getClientOriginalExtension();
+            $location = 'files/passport/' . $filename;
+            $user->passport = $filename;
 
-//            $user->image = $path;
-            $user->update([
-                'passport' => $path,
-            ]);
+            $path = './files/passport/';
+            $link = $path . $user->passport;
+            if (file_exists($link)) {
+                unlink($link);
+            }
+            //install image intervention to use this Image::
+            Image::make($image)->resize(400, 400)->save($location);
         }
         if ($request->hasFile('licence')) {
-            $uploadedFile = $request->file('licence');
-            $name = uniqid('driver', '_') . '.' . $uploadedFile->getClientOriginalExtension();
-            $path = $uploadedFile->storePubliclyAs('public/licence/' . date('Y-W'), $name);
+            $image = $request->file('licence');
+            $filename = 'driver_'.$user->user_id. '_licence.' . $image->getClientOriginalExtension();
+            $location = 'files/licence/' . $filename;
+            $user->licence = $filename;
 
-//            $user->image = $path;
-            $user->update([
-                'licence' => $path
-            ]);
+            $path = './files/licence/';
+            $link = $path . $user->licence;
+            if (file_exists($link)) {
+                unlink($link);
+            }
+            //install image intervention to use this Image::
+            Image::make($image)->resize(500, 500)->save($location);
         }
+        $user->car_type = $request->car_type;
+        $user->licence_expiry = $request->licence_expiry;
+        $user->save();
         $data['status'] = true;
         $data['message'] = 'Profile Update successful';
         return $data;

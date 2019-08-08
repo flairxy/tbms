@@ -19,7 +19,8 @@
                     </span>
                     </div>
                     <div class="block-content bg-info-light">
-                        <img class="img-avatar img-avatar-thumb" src="/media/avatars/avatar11.jpg" alt/>
+                        <img class="img-avatar img-avatar-thumb" src="/media/avatars/avatar11.jpg" v-if="driver.approved == '0'"/>
+                        <img class="img-avatar img-avatar-thumb" :src="image_src + driver.passport" v-else/>
                     </div>
                     <div class="block-content">
                         <div class="row items-push text-center">
@@ -158,6 +159,7 @@
                 drivers: [],
                 users: [],
                 rides: [],
+                image_src: '/files/passport/',
                 processing: false,
                 booking: false,
                 driver_id: '',
